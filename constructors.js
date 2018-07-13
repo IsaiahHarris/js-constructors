@@ -57,7 +57,7 @@ Spell.prototype.getDetails = function () {
  */
 
 function DamageSpell(name, cost, damage, description) {
-  Spell.call(this, name, cost, description)
+  Spell.call(this, name, cost, description);
   this.damage = damage;
 }
 DamageSpell.prototype = Object.create(Spell.prototype);
@@ -95,12 +95,12 @@ function Spellcaster(name, health, mana) {
  * @param  {number} damage  Amount of damage to deal to the spellcaster
  */
 Spellcaster.prototype.inflictDamage = function (damage) {
-  this.damage = damage
+  this.damage = damage;
   if (this.health - this.damage > 1) {
     this.health -= this.damage;
   } else {
     this.health = 0;
-    this.isAlive = false
+    this.isAlive = false;
   }
 }
 /**
@@ -149,12 +149,12 @@ Spellcaster.prototype.spendMana = function (cost) {
  */
 
 Spellcaster.prototype.invoke = function (spell, target) {
-  if(spell instanceof Spell){
-    if(!(target instanceof Spellcaster)&& spell instanceof DamageSpell){
+  if (spell instanceof Spell) {
+    if (!(target instanceof Spellcaster) && spell instanceof DamageSpell) {
       return false;
-    } 
-    if(this.spendMana(spell.cost)){
-      if(spell instanceof DamageSpell){
+    }
+    if (this.spendMana(spell.cost)) {
+      if (spell instanceof DamageSpell) {
         target.inflictDamage(spell.damage);
       }
       return true;
